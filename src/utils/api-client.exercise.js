@@ -1,4 +1,5 @@
 // 🐨 get the queryCache from 'react-query'
+import {queryCache} from 'react-query'
 import * as auth from 'auth-provider'
 const apiURL = process.env.REACT_APP_API_URL
 
@@ -22,6 +23,7 @@ async function client(
       // 🐨 call queryCache.clear() to clear all user data from react-query
       await auth.logout()
       // refresh the page for them
+      queryCache.clear()
       window.location.assign(window.location)
       return Promise.reject({message: 'Please re-authenticate.'})
     }
